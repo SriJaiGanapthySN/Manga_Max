@@ -43,7 +43,7 @@ const FavouritesPage = () => {
   //   if (!user) return;
 
   //   try {
-  //     if (isFavorite(animeId)) {
+  //     if (favourites(animeId)) {
   //       await removeFavourites(animeId);
   //     } else {
   //       await addFavourites(animeId);
