@@ -11,7 +11,8 @@ import { useAuth } from "./AuthContext";
 import type { Anime } from "../types/Anime";
 
 const api = axios.create({
-  baseURL: "http://localhost:3000/api/",
+  baseURL:
+    "https://manga-max-yv8r-2yb30ee3g-srijaiganapthysns-projects.vercel.app/api",
 });
 
 type AnimeContextType = {

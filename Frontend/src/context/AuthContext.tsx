@@ -11,7 +11,10 @@ import type { AuthContextType, AuthFormData, User } from "../types/Auth.d.ts";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const api = axios.create({ baseURL: "http://localhost:3000/api/auth" });
+const api = axios.create({
+  baseURL:
+    "https://manga-max-yv8r-2yb30ee3g-srijaiganapthysns-projects.vercel.app/api/auth",
+});
 
 const authcontext = createContext<AuthContextType | null>(null);
 
