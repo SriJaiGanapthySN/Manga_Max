@@ -11,7 +11,13 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://manga-g4jf2xujd-srijaiganapthysns-projects.vercel.app"],
+    methods: "*",
+    allowedHeaders: "*",
+  })
+);
 const db = connectDB();
 
 app.use("/api/auth", userRoutes);
