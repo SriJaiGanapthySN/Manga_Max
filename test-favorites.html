@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test Favorites API</title>
+  </head>
+  <body>
+    <h1>Test Favorites API</h1>
+    <div>
+      <h2>Login</h2>
+      <form id="loginForm">
+        <input
+          type="email"
+          id="email"
+          placeholder="Email"
+          value="test@example.com"
+        />
+        <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          value="password123"
+        />
+        <button type="submit">Login</button>
+      </form>
+      <p id="loginResult"></p>
+    </div>
+
+    <div>
+      <h2>Get Favorites</h2>
+      <button onclick="getFavorites()">Get Favorites</button>
+      <pre id="favoritesResult"></pre>
+    </div>
+
+    <div>
+      <h2>Add Favorite</h2>
+      <input type="text" id="animeId" placeholder="Anime ID" />
+      <button onclick="addFavorite()">Add Favorite</button>
+      <p id="addResult"></p>
+    </div>
+
+    <script>
+      let authToken = localStorage.getItem("token");
+
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+
+          try {
+            const response = await fetch(
+              "http://localhost:3000/api/auth/login",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
+              }
+            );
+
+            const data = await response.json();
+            if (response.ok) {
+              authToken = data.token;
+              localStorage.setItem("token", authToken);
+              document.getElementById("loginResult").textContent =
+                "Login successful! Token: " + authToken;
+            } else {
+              document.getElementById("loginResult").textContent =
+                "Login failed: " + data.message;
+            }
+          } catch (error) {
+            document.getElementById("loginResult").textContent =
+              "Error: " + error.message;
+          }
+        });
+
+      async function getFavorites() {
+        if (!authToken) {
+          document.getElementById("favoritesResult").textContent =
+            "Please login first";
+          return;
+        }
+
+        try {
+          const response = await fetch("http://localhost:3000/api/favourites", {
+            headers: {
+              Authorization: "Bearer " + authToken,
+            },
+          });
+
+          const data = await response.json();
+          document.getElementById("favoritesResult").textContent =
+            JSON.stringify(data, null, 2);
+        } catch (error) {
+          document.getElementById("favoritesResult").textContent =
+            "Error: " + error.message;
+        }
+      }
+
+      async function addFavorite() {
+        const animeId = document.getElementById("animeId").value;
+        if (!authToken) {
+          document.getElementById("addResult").textContent =
+            "Please login first";
+          return;
+        }
+
+        if (!animeId) {
+          document.getElementById("addResult").textContent =
+            "Please enter an anime ID";
+          return;
+        }
+
+        try {
+          const response = await fetch("http://localhost:3000/api/favourites", {
+            method: "POST",
+            headers: {
+              Authorization: "Bearer " + authToken,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ animeId }),
+          });
+
+          const data = await response.json();
+          document.getElementById("addResult").textContent = JSON.stringify(
+            data,
+            null,
+            2
+          );
+        } catch (error) {
+          document.getElementById("addResult").textContent =
+            "Error: " + error.message;
+        }
+      }
+
+      // Check if token exists on page load
+      if (authToken) {
+        document.getElementById("loginResult").textContent =
+          "Token found: " + authToken;
+      }
+    </script>
+  </body>
+</html>

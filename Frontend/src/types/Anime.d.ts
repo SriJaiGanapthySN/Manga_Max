@@ -1,0 +1,27 @@
+export type Anime = {
+  _id: string;
+  mal_id: number;
+  url: string;
+  title: string;
+  title_english: string;
+  title_japanese: string;
+  title_synonyms: string | null;
+  image_jpg_url: string;
+  image_jpg_small_url: string;
+  image_jpg_large_url: string;
+  trailer_youtube_id: string;
+  trailer_url: string;
+  trailer_embed_url: string;
+  trailer_image_url: string;
+  trailer_small_image_url: string;
+  trailer_medium_image_url: string;
+  trailer_large_image_url: string;
+  trailer_maximum_image_url: string;
+  type: string;
+  source: string;
+  episodes: number;
+  status: string;
+  airing: boolean;
+  duration: string;
+  rating: string;
+};

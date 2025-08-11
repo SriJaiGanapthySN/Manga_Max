@@ -1,0 +1,227 @@
+/* Custom animations for Japanese/Naruto Style SignupPage */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-15px) rotate(5deg); }
+  50% { transform: translateY(-25px) rotate(0deg); }
+  75% { transform: translateY(-10px) rotate(-5deg); }
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-15px) scale(1.05); }
+}
+
+@keyframes text-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) rotateX(10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+  }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-3px) rotate(-1deg); }
+  20%, 40%, 60%, 80% { transform: translateX(3px) rotate(1deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(251, 146, 60, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(251, 146, 60, 0.7); }
+}
+
+@keyframes ninja-star-spin {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes sakura-fall {
+  0% { 
+    transform: translateY(-20px) translateX(0px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% { 
+    transform: translateY(100vh) translateX(50px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes fire-flicker {
+  0%, 100% { 
+    opacity: 0.8;
+    transform: scale(1) rotate(0deg);
+  }
+  25% { 
+    opacity: 1;
+    transform: scale(1.05) rotate(1deg);
+  }
+  50% { 
+    opacity: 0.9;
+    transform: scale(0.98) rotate(-1deg);
+  }
+  75% { 
+    opacity: 1;
+    transform: scale(1.02) rotate(0.5deg);
+  }
+}
+
+@keyframes chakra-flow {
+  0% { 
+    box-shadow: 0 0 10px rgba(251, 146, 60, 0.3);
+    border-color: rgba(251, 146, 60, 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 25px rgba(251, 146, 60, 0.6);
+    border-color: rgba(251, 146, 60, 0.6);
+  }
+  100% { 
+    box-shadow: 0 0 10px rgba(251, 146, 60, 0.3);
+    border-color: rgba(251, 146, 60, 0.3);
+  }
+}
+
+/* Apply animations */
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 4s ease-in-out infinite;
+}
+
+.animate-text-shimmer {
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.6) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: text-shimmer 4s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 1.2s ease-out;
+}
+
+.animate-slide-up {
+  animation: slide-up 1s ease-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 2s ease-out;
+}
+
+.animate-shake {
+  animation: shake 0.6s ease-in-out;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-ninja-star {
+  animation: ninja-star-spin 6s linear infinite;
+}
+
+.animate-sakura {
+  animation: sakura-fall 12s linear infinite;
+}
+
+.animate-fire {
+  animation: fire-flicker 2s ease-in-out infinite;
+}
+
+.animate-chakra {
+  animation: chakra-flow 3s ease-in-out infinite;
+}
+
+/* Animation delays for staggered effects */
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1s;
+}
+
+.animation-delay-3000 {
+  animation-delay: 3s;
+}
+
+/* Japanese scroll/paper effects */
+.scroll-texture {
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(251, 146, 60, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(239, 68, 68, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(251, 191, 36, 0.1) 0%, transparent 50%);
+}
+
+.ninja-border {
+  border-image: linear-gradient(45deg, #f97316, #dc2626, #f59e0b) 1;
+}
+
+/* Responsive animations */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-bounce-slow,
+  .animate-text-shimmer,
+  .animate-fade-in-up,
+  .animate-slide-up,
+  .animate-fade-in,
+  .animate-shake,
+  .animate-pulse-glow,
+  .animate-ninja-star,
+  .animate-sakura,
+  .animate-fire,
+  .animate-chakra {
+    animation: none;
+  }
+}
+
+/* Japanese typography effects */
+.japanese-text {
+  font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Gradient text for ninja theme */
+.ninja-gradient-text {
+  background: linear-gradient(45deg, #fed7aa, #fbbf24, #f97316, #dc2626);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shimmer 5s ease-in-out infinite;
+}
