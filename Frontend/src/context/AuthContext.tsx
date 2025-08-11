@@ -12,8 +12,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const api = axios.create({
-  baseURL:
-    "https://manga-max-yv8r-2yb30ee3g-srijaiganapthysns-projects.vercel.app/api/auth",
+  baseURL: "https://manga-max-yv8r.vercel.app/api/auth",
 });
 
 const authcontext = createContext<AuthContextType | null>(null);
