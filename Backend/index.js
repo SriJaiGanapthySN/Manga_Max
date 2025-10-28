@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://manga-max-nine.vercel.app"],
+    origin: ["https://manga-max-nine.vercel.app", "http://localhost:5173"],
     methods: "*",
     allowedHeaders: "*",
   })
