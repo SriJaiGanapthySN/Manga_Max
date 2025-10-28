@@ -36,22 +36,9 @@ const FavouritesPage = () => {
     );
     setFavoriteAnimes(filteredAnimes);
 
+    // Ensure loading state is updated after filtering
     setIsLoading(false);
   }, [user, favourites, animes]);
-
-  // const handleFavoriteToggle = async (animeId: string) => {
-  //   if (!user) return;
-
-  //   try {
-  //     if (favourites(animeId)) {
-  //       await removeFavourites(animeId);
-  //     } else {
-  //       await addFavourites(animeId);
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
 
   if (!user) {
     return (

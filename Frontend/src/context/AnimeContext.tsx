@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import axios from "axios";
 import {
   useEffect,
@@ -112,6 +113,7 @@ export const AnimeProvider = ({ children }: { children: ReactNode }) => {
     }
   };
   const addFavourites = async (animeId: string) => {
+    const token = localStorage.getItem("token"); // Always fetch the token directly
     if (!token) {
       console.log("No token available");
       return;
@@ -120,9 +122,7 @@ export const AnimeProvider = ({ children }: { children: ReactNode }) => {
     try {
       const response = await api.post(
         `/favourites`,
-        {
-          animeId: animeId,
-        },
+        { animeId },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -131,12 +131,8 @@ export const AnimeProvider = ({ children }: { children: ReactNode }) => {
         }
       );
       console.log("Added to favourites:", response.data.message);
-      // Update local state
-      setFavourites((prev) => {
-        const newFavourites = [...prev, animeId];
-        console.log("Updated favourites after add:", newFavourites);
-        return newFavourites;
-      });
+      setFavourites((prev) => [...prev, animeId]); // Update local state
+      await getFavourites(); // Synchronize with server
     } catch (e) {
       console.log("Error adding to favourites:", e);
     } finally {
@@ -145,6 +141,7 @@ export const AnimeProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const removeFavourites = async (animeId: string) => {
+    const token = localStorage.getItem("token"); // Always fetch the token directly
     if (!token) {
       console.log("No token available");
       return;
@@ -157,12 +154,8 @@ export const AnimeProvider = ({ children }: { children: ReactNode }) => {
         },
       });
       console.log("Removed from favourites:", animeId);
-      // Update local state
-      setFavourites((prev) => {
-        const newFavourites = prev.filter((id) => id !== animeId);
-        console.log("Updated favourites after remove:", newFavourites);
-        return newFavourites;
-      });
+      setFavourites((prev) => prev.filter((id) => id !== animeId)); // Update local state
+      await getFavourites(); // Synchronize with server
     } catch (e) {
       console.log("Error removing from favourites:", e);
     } finally {
@@ -209,7 +202,6 @@ export const AnimeProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const useAnime = () => {
   const context = useContext(animeContext);
   if (!context) {
